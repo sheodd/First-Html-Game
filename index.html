@@ -1,0 +1,47 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="interface.css">
+<title>Game</title>
+</head>
+<body onload="Load()">
+<audio><source src="https://www.youtube.com/watch?v=ixZDTiXiHsc" type="audio/mpeg" /></audio>
+
+<span title="some test text for a span"><button onClick="moneyClick(1 + (clickupgrade * 3))" >Get Money</button></span>
+</br>
+Money: <span id="moneys">0</span>
+</br>
+Money Per Second <span id="moneyPS">0</span>
+<br>
+
+<button onClick="buyShop()">Buy shop: $<span id="shopCost">10</span></br></button>
+</br>
+Shops: <span id="shops">0</span>
+</br>
+
+
+<button onClick="buyShopUp()">Buy Shop Upgrade: $<span id="shopUpCost">100</span></br></button>
+</br>
+Shop Up Grades: <span id="shopups">0</span>
+</br>
+<button onClick="buyClickUpgrade()">Buy Click Upgrade: <span id="clickUpgradeCost">10</span></button></br>
+Click Upgrades: <span id="clickupgrade">0</span>
+</br>
+<button onClick="HP(damage)">HP:</button>
+</br>
+<span id="Health">10</span>
+</br>
+damage:<span id="damage">1</span>
+</br>
+<button onClick="buyDamageUpgrade()">Buy Damage Upgrade:<span id='damageUpgradeCost'>10</span></button>
+</br>
+Damage Upgrades:<span id="damageUpGrades">0</span>
+</br>
+<button onClick="Save()">save</button>
+<button onClick="Load()">load</button>
+<button onClick="delSave()">Delete Save</button> New buttons need to be added as well as more mechanics ;)
+
+
+
+<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
