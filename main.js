@@ -2,12 +2,13 @@ var moneys = 0;
 var shops = 0;
 var shopups = 0;
 var clickupgrade = 0;
-
+var gold = 0;
 var moneyPS = 0;
 var damage = 1;
 var Health = 10;
 var hmult = 0;
 var damageUpgrades = 0;
+var plat = 0;
 function moneyClick(number){
 	moneys = (moneys + number);
 	
@@ -49,6 +50,7 @@ function MPS(){
 var moneyPerSecond = ((shops / 2) + (shops * shopups) /2);
 moneyPS = moneyPerSecond;
 document.getElementById('moneyPS').innerHTML = moneyPS
+Convert();
 };
 window.setInterval(function(){
 Save
@@ -72,10 +74,10 @@ function Save(){
 	shops: shops,
 	shopups: shopups,
 	clickupgrade: clickupgrade,
-	/*damage: damage,
+	damage: damage,
 	Health: Health,
-	damageUpGrades: damageUpGrades,
-	hmult: hmult,*/
+	damageUpgrades: damageUpgrades,
+	hmult: hmult,
 	
 };
 localStorage.setItem("save",JSON.stringify(save));
@@ -88,6 +90,13 @@ function Cheat(){
 	document.getElementById('shops').innerHTML = shops;
 	shopups = shopups + 1000000000000000;
 	document.getElementById('shopups').innerHTML = shopups;
+};
+function plat(){
+plat = plat + 100;
+};
+function Gold(){
+	gold = gold + 150;
+	document.getElementById('gold').innerHTML = gold;
 };
 function HP(){
 	
@@ -120,14 +129,30 @@ function buyDamageUpgrade(){
 	document.getElementById('damage').innerHTML = damage;
 
 };
+function Convert(){
+	if (moneys >= 100){
+		moneys = moneys - 100;
+		gold = gold + 1;
+		document.getElementById('gold').innerHTML = gold;
+		document.getElementById('moneys').innerHTML = moneys;
+		
+	};
+	if (gold >= 100){
+	gold = gold - 100
+	plat = plat + 1
+	document.getElementById('plat').innerHTML = plat;
+	document.getElementById('gold').innerHTML = gold;
+	};
+		
+};
 
 
 function Load(){
 	var savegame = JSON.parse(localStorage.getItem("save")); 
-	/*if (typeof savegame.hmult !== "undefined") hmult = savegame.hmult;
-	if (typeof savegame.damageUpGrades !== "undefined") damageUpGrades = savegame.damageUpGrades; document.getElementById("damageUpGrades");
-	if (typeof savegame.Health !=="undefined") Health = savegame.Health; document.getElementById("Health") = Health;
-	if (typeof savegame.damage !== "undefined") damage = savegame.damage; document.getElementById("damage") = damage;*/
+	if (typeof savegame.hmult !== "undefined") hmult = savegame.hmult;
+	if (typeof savegame.damageUpgrades !== "undefined") damageUpgrades = savegame.damageUpgrades; document.getElementById('damageUpGrades').innerHTML = damageUpGrades;var damageUpgradeCost = Math.floor(10 * Math.pow(2.1,damageUpgrades));document.getElementById('damageUpgradeCost').innerHTML = damageUpgradeCost;
+	if (typeof savegame.Health !=="undefined") Health = savegame.Health; document.getElementById("Health").innerHTML = Health;
+	if (typeof savegame.damage !== "undefined") damage = savegame.damage; document.getElementById("damage").innerHTML = damage;
 	if (typeof savegame.moneys !== "undefined") moneys = savegame.moneys;
 	if (typeof savegame.shops !== "undefined") shops = savegame.shops; document.getElementById('shops').innerHTML = shops;var nextCost = Math.floor(10 * Math.pow(1.1,shops));; document.getElementById("shopCost").innerHTML = nextCost;
 	if (typeof savegame.shopups !== "undefined") shopups = savegame.shopups; document.getElementById('shopups').innerHTML = shopups;var shopUpCost = Math.floor(100 * Math.pow(1.1, shopups));document.getElementById('shopUpCost').innerHTML = shopUpCost;
